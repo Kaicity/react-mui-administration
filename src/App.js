@@ -1,24 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import { ColorModeContext, useMode } from './theme';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import Topbar from "./pages/global/Topbar";
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import Dashboard from './pages/dashboard';
+import SidebarTab from './pages/global/SidebarTab';
+
+// import Team from './pages/team'
+// import Invoices from './pages/Invoices'
+// import Contacts from './pages/Contacts'
+// import Bar from './pages/Bar'
+// import Form from './pages/Form'
+// import Line from './pages/Line'
+// import Pie from './pages/global/Pie';
+// import FAQ from './pages/global/FAQ';
+// import Geography from './pages/global/Geography';
+// import Calendar from './pages/global/Calendar';
 
 function App() {
+  const [theme, colorMode] = useMode();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Router>
+          <div className="app">
+            <SidebarTab />
+            <main className="content">
+              <Topbar />
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+
+                {/* <Route path="/team" element={<Team />} />
+                <Route path="/invoices" element={<Invoices />} />
+                <Route path="/contacts" element={<Contacts />} />
+                <Route path="/bar" element={<Bar />} />
+                <Route path="/form" element={<Form />} />
+                <Route path="/line" element={<Line />} />
+                <Route path="/pie" element={<Pie />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/geography" element={<Geography />} />
+                <Route path="/calendar" element={<Calendar />} /> */}
+              </Routes>
+            </main>
+          </div>
+        </Router>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 
