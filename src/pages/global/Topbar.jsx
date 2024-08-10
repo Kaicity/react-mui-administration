@@ -1,4 +1,4 @@
-import { Box, IconButton, styled, useTheme } from '@mui/material';
+import { Box, Icon, IconButton, Menu, styled, Typography, useTheme } from '@mui/material';
 import { useContext } from 'react';
 import { ColorModeContext, tokens } from '../../theme'
 import InputBase from '@mui/material/InputBase';
@@ -8,6 +8,8 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import SearchIcon from '@mui/icons-material/Search'
+import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
+
 
 
 
@@ -35,6 +37,12 @@ const Topbar = () => {
 
             {/* Nav menu icons */}
             <Box display="flex">
+
+                <IconButton><SignalCellularAltOutlinedIcon
+                    style={theme.palette.mode === 'dark' ? { color: 'greenyellow' } : { color: '#00b34e' }} />
+                    <Typography variant='h6' color= {theme.palette.mode === 'dark' ? { color: 'greenyellow' } : { color: '#00b34e' }}>Connected</Typography>
+                </IconButton>
+
                 <IconButton onClick={colorMode.toggleColorMode}>
                     {theme.palette.mode === 'dark' ? (
                         <DarkModeOutlinedIcon />
