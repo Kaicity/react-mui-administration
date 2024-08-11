@@ -5,7 +5,7 @@ import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import Dashboard from './pages/dashboard';
 import SidebarTab from './pages/global/SidebarTab';
 
-// import Team from './pages/team'
+import Customer from './pages/customer'
 // import Invoices from './pages/Invoices'
 // import Contacts from './pages/Contacts'
 // import Bar from './pages/Bar'
@@ -18,6 +18,7 @@ import SidebarTab from './pages/global/SidebarTab';
 
 function App() {
   const [theme, colorMode] = useMode();
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
@@ -29,7 +30,7 @@ function App() {
               <Topbar />
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-
+                <Route path="/customer" element={<Customer />} />
                 {/* <Route path="/team" element={<Team />} />
                 <Route path="/invoices" element={<Invoices />} />
                 <Route path="/contacts" element={<Contacts />} />

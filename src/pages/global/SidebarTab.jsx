@@ -49,9 +49,9 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
             onClick={() => setSelected(title)}
             icon={icon}
             suffix={title === 'Dashboard' ? "🔥" : ""}
+            component={<Link to={to} />}
         >
             <Typography>{title}</Typography>
-            <Link to={to}></Link>
         </MenuItem>
     );
 };
@@ -70,6 +70,7 @@ const SidebarTab = () => {
                 transitionDuration={1000}
                 style={{ border: 'none' }}
                 width="300px"
+
             >
                 <Menu>
                     <MenuItem
@@ -77,7 +78,6 @@ const SidebarTab = () => {
                         icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
                         style={{
                             margin: "10px 0 20px 0",
-                            color: '#fff',
                             backgroundColor: 'transparent', // Maintain default background
                             borderRadius: '5px',
                             transition: 'background-color 0.3s ease', // Smooth transition
@@ -131,7 +131,7 @@ const SidebarTab = () => {
                             </Box>
                             <Box textAlign="center">
                                 <Typography variant="h2" color={colors.grey[100]} fontWeight="bold" sx={{ m: "10px 0 0 0" }}>Thong Thong</Typography>
-                                <Typography>User is Administration</Typography>
+                                <Typography color={colors.greenAccent[400]}>User is Administration</Typography>
                             </Box>
                         </Box>
                     )}
@@ -194,7 +194,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="E-Gift Card Discount"
-                            to="/gift-card-dis"
+                            to="/gift-card-discount"
                             icon={<DiscountSharpIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -229,7 +229,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Sale Report"
-                            to="/bar"
+                            to="/sale-report"
                             icon={<ArticleOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -237,7 +237,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Gift Card Report"
-                            to="/pie"
+                            to="/gift-card-report"
                             icon={<ArticleOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -245,7 +245,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Invoices"
-                            to="/line"
+                            to="/invoice"
                             icon={<ReceiptOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -253,7 +253,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Payroll"
-                            to="/geography"
+                            to="/payroll"
                             icon={<ReceiptOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -261,7 +261,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Audit"
-                            to="/geography"
+                            to="/audit"
                             icon={<MapOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -269,7 +269,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Statictis"
-                            to="/geography"
+                            to="/statictis"
                             icon={<LineAxisOutlined />}
                             selected={selected}
                             setSelected={setSelected}
@@ -287,7 +287,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Discounts"
-                            to="/discount"
+                            to="/discount-management"
                             icon={<DiscountSharpIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -305,7 +305,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Promotion"
-                            to="/geography"
+                            to="/promotion"
                             icon={<DiscountSharpIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -313,7 +313,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Loyalty Program"
-                            to="/geography"
+                            to="/loyalaty-prog"
                             icon={<DiscountSharpIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -331,15 +331,15 @@ const SidebarTab = () => {
 
 
                         <Item
-                            title="Geography Chart"
-                            to="/geography"
+                            title="SMS"
+                            to="/marketing"
                             icon={<ChatBubbleOutlineOutlined />}
                             selected={selected}
                             setSelected={setSelected}
                         />
 
                         <Item
-                            title="Geography Chart"
+                            title="SMS Checking"
                             to="/geography"
                             icon={<ChatBubbleOutlineOutlined />}
                             selected={selected}
@@ -358,7 +358,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Service Group"
-                            to="/geography"
+                            to="/service-group"
                             icon={<HomeRepairServiceOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -366,7 +366,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Services"
-                            to="/geography"
+                            to="/service"
                             icon={<HomeRepairServiceOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -384,7 +384,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Customer Group"
-                            to="/geography"
+                            to="/customer-group"
                             icon={<Diversity3OutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -392,7 +392,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Customers"
-                            to="/geography"
+                            to="/customer"
                             icon={<Diversity3OutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -411,7 +411,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Roles"
-                            to="/geography"
+                            to="/employee-management"
                             icon={<SupervisedUserCircleOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -419,7 +419,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Employee Group"
-                            to="/geography"
+                            to="/employee-group"
                             icon={<PeopleOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -427,7 +427,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Employees"
-                            to="/geography"
+                            to="/employee"
                             icon={<PeopleOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -435,7 +435,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Employee Schedule"
-                            to="/geography"
+                            to="/employee-schedule"
                             icon={<CalendarTodayOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -443,7 +443,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Checking History"
-                            to="/geography"
+                            to="/checking-history"
                             icon={<PeopleOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -451,7 +451,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Turn Adjustment"
-                            to="/geography"
+                            to="/turn-adj"
                             icon={<PeopleOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -459,7 +459,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Day off"
-                            to="/geography"
+                            to="/day-off"
                             icon={<PersonOffOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -478,7 +478,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Close Date"
-                            to="/geography"
+                            to="/close-date"
                             icon={<DoorFrontOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -486,7 +486,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Stores"
-                            to="/geography"
+                            to="/store"
                             icon={<StorefrontOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -505,7 +505,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Settings"
-                            to="/geography"
+                            to="/setting"
                             icon={<SettingsSuggestOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -513,7 +513,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Business Time"
-                            to="/geography"
+                            to="/business-time"
                             icon={<MapOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -521,7 +521,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="SquareUp Setting"
-                            to="/geography"
+                            to="/squareup-setting"
                             icon={<SettingsSuggestOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -529,7 +529,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="SMS Setting"
-                            to="/geography"
+                            to="/sms-setting"
                             icon={<SettingsSuggestOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -538,7 +538,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Email Editor"
-                            to="/geography"
+                            to="/email-editor"
                             icon={<EmailOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
@@ -546,7 +546,7 @@ const SidebarTab = () => {
 
                         <Item
                             title="Email Setting"
-                            to="/geography"
+                            to="/email-setting"
                             icon={<SettingsSuggestOutlinedIcon />}
                             selected={selected}
                             setSelected={setSelected}
