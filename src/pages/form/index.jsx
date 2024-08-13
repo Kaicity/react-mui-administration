@@ -28,7 +28,7 @@ const customerSchema = yup.object({
 });
 
 const Form = ({ onClose }) => {
-  const isNoneMobile = useMediaQuery("(min-width:600px)");
+  // const isNoneMobile = useMediaQuery("(min-width:600px)"); //Form Reponsive Mobile
 
   const handleSubmit = (values) => {
     console.log(values);
@@ -53,9 +53,9 @@ const Form = ({ onClose }) => {
             display="grid"
             gap="30px"
             gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-            sx={{
-              "& > div": { gridColumn: isNoneMobile ? undefined : "span 4" },
-            }}
+            // sx={{
+            //   "& > div": { gridColumn: isNoneMobile ? undefined : "span 4" },
+            // }}
           >
             <TextField
               fullWidth
