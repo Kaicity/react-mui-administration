@@ -1,13 +1,36 @@
-import { Box, Toolbar, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Toolbar,
+  Typography,
+  useTheme,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { MockDataCustomer } from "../../data/mockData";
 import BadgeIcon from "@mui/icons-material/Badge";
 import Header from "../../components/Header";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { useState } from "react";
+import Form from "../form";
 
 const Customer = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [openFormDialog, setOpenFormDialog] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenFormDialog(true);
+  };
+
+  const handleClickClose = () => {
+    setOpenFormDialog(false);
+  };
+
   const columns = [
     { field: "id", headerName: "ID", flex: 1 },
     {
@@ -73,6 +96,33 @@ const Customer = () => {
           },
         }}
       >
+        <Box display="flex" justifyContent="flex-end">
+          <Button
+            variant="contained"
+            color="secondary"
+            endIcon={<AddCircleOutlineIcon />}
+            onClick={handleClickOpen}
+          >
+            Create
+          </Button>
+
+          {/* DIALOG FORM */}
+          <Dialog
+            open={openFormDialog}
+            onClose={handleClickClose}
+            sx={{
+              "& .MuiDialog-paper": {
+                backgroundColor: colors.primary[400],
+              },
+            }}
+          >
+            <DialogTitle>Create a new Customer</DialogTitle>
+            <DialogContent>
+              <Form onClose={handleClickClose} />
+            </DialogContent>
+          </Dialog>
+        </Box>
+
         <DataGrid
           rows={MockDataCustomer}
           columns={columns}

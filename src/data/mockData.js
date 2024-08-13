@@ -1,7 +1,7 @@
 export const MockDataCustomer = [
   {
     id: 1,
-    name: "Nguyen Van An",
+    name: "Nguyen Minh Thong",
     address: "123 Duong Le Loi, Quan 1, TP. Ho Chi Minh",
     phone: "0901234567",
     email: "nguyenvanan@example.com",

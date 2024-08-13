@@ -102,7 +102,7 @@ const SidebarTab = () => {
                                             height: 'auto',
                                         }}
                                     />
-                                    <Typography variant="h4" color={colors.grey[100]} sx={{ p: '5px' }}>Nail Admin</Typography>
+                                    <Typography variant="h4" color={colors.grey[100]} sx={{ p: '5px' }}>Nail Salon</Typography>
                                 </Box>
                                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                                     <MenuOutlinedIcon />
