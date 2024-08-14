@@ -10,10 +10,8 @@ import BookOnlineOutlinedIcon from "@mui/icons-material/BookOnlineOutlined";
 import CardMembershipOutlinedIcon from "@mui/icons-material/CardMembershipOutlined";
 import DiscountSharpIcon from "@mui/icons-material/DiscountSharp";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/BookmarkAddedOutlined";
 import ChatBubbleOutlineOutlined from "@mui/icons-material/ChatBubbleOutlineOutlined";
@@ -26,7 +24,6 @@ import DoorFrontOutlinedIcon from "@mui/icons-material/DoorFrontOutlined"
 import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
 import SettingsSuggestOutlinedIcon from '@mui/icons-material/SettingsSuggestOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
-import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import { LineAxisOutlined } from "@mui/icons-material";
 
 // Define the Item component

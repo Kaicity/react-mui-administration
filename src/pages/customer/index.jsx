@@ -16,7 +16,7 @@ import BadgeIcon from "@mui/icons-material/Badge";
 import Header from "../../components/Header";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useState } from "react";
-import Form from "../form";
+import Form from "../customer-form";
 
 const Customer = () => {
   const theme = useTheme();

@@ -4,9 +4,9 @@ import Topbar from "./pages/global/Topbar";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Dashboard from "./pages/dashboard";
 import SidebarTab from "./pages/global/SidebarTab";
-import Form from "./pages/form";
-
 import Customer from "./pages/customer";
+import CalendarSchedule from "./pages/calendar-schedule";
+
 // import Invoices from './pages/Invoices'
 // import Contacts from './pages/Contacts'
 // import Bar from './pages/Bar'
@@ -32,7 +32,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/customer" element={<Customer />} />
-                <Route path="form" element={<Form />} />
+                <Route path="/employee-schedule" element={<CalendarSchedule />} />
                 {/* <Route path="/team" element={<Team />} />
                 <Route path="/invoices" element={<Invoices />} />
                 <Route path="/contacts" element={<Contacts />} />
