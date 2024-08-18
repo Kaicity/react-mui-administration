@@ -20,7 +20,7 @@ function App() {
   }, []);
 
   const getAccount = () => {
-    let myAccount = localStorage.getItem("account");
+    let myAccount = localStorage.getItem('account');
     if (myAccount) {
       setIsAuthenticated(true);
     }
