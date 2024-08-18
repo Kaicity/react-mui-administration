@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Box,
   Typography,
@@ -12,7 +12,7 @@ import {
   IconButton,
   FormHelperText,
 } from "@mui/material";
-import { tokens } from "../../theme";
+import { tokens, ColorModeContext } from "../../theme";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { account } from "../../auth/account";
@@ -21,12 +21,19 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const colorMode = useContext(ColorModeContext);
 
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ username: "", password: "" });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (theme.palette.mode === "light") {
+      return colorMode.toggleColorMode;
+    }
+  }, []);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -269,7 +276,7 @@ const Login = () => {
                 },
               }}
             >
-              Đăng Nhập
+              Sign In
             </Button>
           </form>
 
