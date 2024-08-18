@@ -69,7 +69,7 @@ const Login = () => {
 
     if (email === account.email && password === account.password) {
       let isAccount = { email, password };
-      localStorage.setItem('account', JSON.stringify(isAccount))
+      localStorage.setItem("account", JSON.stringify(isAccount));
       navigate("/");
     } else {
       alert("Login failed");
@@ -294,6 +294,7 @@ const Login = () => {
             mt="20px"
             width="100%"
             maxWidth="400px"
+            gap="20px"
           >
             <Box
               component="a"
