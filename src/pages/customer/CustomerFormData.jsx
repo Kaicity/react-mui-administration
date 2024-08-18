@@ -39,6 +39,7 @@ const Form = ({ onClose }) => {
       onSubmit={handleSubmit}
       initialValues={initialValues}
       validationSchema={customerSchema}
+      
     >
       {({
         values,

@@ -5,6 +5,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import FullCalendar from "@fullcalendar/react";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import {
   Box,
@@ -30,6 +31,8 @@ const CalendarSchedule = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [newEventTitle, setNewEventTitle] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+
+  const isNonMobile = useMediaQuery("(min-width:600px)")
 
   const handleDateClick = (selected) => {
     setSelectedDate(selected);
@@ -125,7 +128,7 @@ const CalendarSchedule = () => {
             headerToolbar={{
               left: "prev, next today",
               center: "title",
-              right: "dayGridMonth, timeGridWeek, timeGridDay, listMonth",
+              right: "dayGridMonth,timeGridWeek,timeGridDay,listMonth",
             }}
             initialView="dayGridMonth"
             editable={true}
@@ -136,7 +139,7 @@ const CalendarSchedule = () => {
             eventClick={handleEventClick}
             eventsSet={(events) => setCurrentEvent(events)}
             initialEvents={[
-              { id: "1234", title: "All-day event", date: "2024-08-14" },
+              { id: "1234", title: "All-day event", date: "2024-08-01" },
               { id: "4321", title: "Timed-event", date: "2024-08-29" },
             ]}
           />

@@ -1,22 +1,16 @@
-import {
-  Box,
-  Toolbar,
-  Typography,
-  useTheme,
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from "@mui/material";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { Box, useTheme, Button } from "@mui/material";
 import { tokens } from "../../theme";
 import { MockDataCustomer } from "../../data/mockData";
-import BadgeIcon from "@mui/icons-material/Badge";
 import Header from "../../components/Header";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useState } from "react";
-import Form from "../customer-form";
+import Form from "./CustomerFormData";
+import DataTable from "../../components/DataTable";
+import { GridToolbar } from "@mui/x-data-grid";
+import ModalDialog from "../../components/ModalDialog";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
 
 const Customer = () => {
   const theme = useTheme();
@@ -29,6 +23,17 @@ const Customer = () => {
 
   const handleClickClose = () => {
     setOpenFormDialog(false);
+  };
+
+  const handleEdit = (id) => {
+    console.log("Edit customer with ID:", id);
+    setOpenFormDialog(true);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this customer?")) {
+      console.log("Delete customer with ID:", id);
+    }
   };
 
   const columns = [
@@ -58,6 +63,35 @@ const Customer = () => {
       type: "number",
       headerAlign: "left",
       align: "left",
+    },
+    {
+      field: "action",
+      headerName: "",
+      flex: 1,
+      headerAlign: "left",
+      align: "left",
+      sortable: false,
+      type: "null",
+      disableColumnMenu: true,
+      renderCell: (params) => (
+        <Box
+          display="flex"
+          gap="20px"
+          width="100%"
+          alignItems="center"
+          mt="5px"
+        >
+          <IconButton color="warning" onClick={() => handleEdit(params.row.id)}>
+            <EditIcon />
+          </IconButton>
+          <IconButton
+            color="secondary"
+            onClick={() => handleDelete(params.row.id)}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </Box>
+      ),
     },
   ];
 
@@ -107,26 +141,25 @@ const Customer = () => {
           </Button>
 
           {/* DIALOG FORM */}
-          <Dialog
-            open={openFormDialog}
-            onClose={handleClickClose}
+          <ModalDialog
+            title="Create a new Customer"
+            openFormDialog={openFormDialog}
+            handleClickClose={() => {
+              setOpenFormDialog(false);
+            }}
+            content={<Form onClose={handleClickClose} />}
             sx={{
               "& .MuiDialog-paper": {
                 backgroundColor: colors.primary[400],
               },
             }}
-          >
-            <DialogTitle>Create a new Customer</DialogTitle>
-            <DialogContent>
-              <Form onClose={handleClickClose} />
-            </DialogContent>
-          </Dialog>
+          />
         </Box>
 
-        <DataGrid
+        <DataTable
           rows={MockDataCustomer}
           columns={columns}
-          checkboxSelection
+          checkboxSelection={true}
           slots={{ toolbar: GridToolbar }}
         />
       </Box>
