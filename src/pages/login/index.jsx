@@ -27,6 +27,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ username: "", password: "" });
+  const [blockSubmit, setBlockSubmit] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -77,7 +78,12 @@ const Login = () => {
     if (email === account.email && password === account.password) {
       let isAccount = { email, password };
       localStorage.setItem("account", JSON.stringify(isAccount));
-      navigate("/");
+      
+      setBlockSubmit(true)
+      setTimeout(() => {
+        setBlockSubmit(false)
+        navigate("/");
+      }, 1500);
     } else {
       alert("Login failed");
     }
@@ -265,6 +271,7 @@ const Login = () => {
               type="submit"
               variant="contained"
               fullWidth
+              disabled= {blockSubmit}
               sx={{
                 mt: "40px",
                 height: "50px",
