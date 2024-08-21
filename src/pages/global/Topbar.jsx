@@ -19,11 +19,52 @@ import SearchIcon from "@mui/icons-material/Search";
 import SignalCellularAltOutlinedIcon from "@mui/icons-material/SignalCellularAltOutlined";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import FullScreenIcon from "@mui/icons-material/Fullscreen";
 
 const Topbar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
+
+  const enterFullScreen = () => {
+    const doc = document.documentElement;
+
+    if (doc.requestFullscreen) {
+      doc.requestFullscreen();
+    } else if (doc.mozRequestFullScreen) {
+      // Firefox
+      doc.mozRequestFullScreen();
+    } else if (doc.webkitRequestFullscreen) {
+      // Chrome, Safari, and Opera
+      doc.webkitRequestFullscreen();
+    } else if (doc.msRequestFullscreen) {
+      // IE/Edge
+      doc.msRequestFullscreen();
+    }
+  };
+
+  const exitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      // Firefox
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      // Chrome, Safari, and Opera
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      // IE/Edge
+      document.msExitFullscreen();
+    }
+  };
+
+  const handleClickFullScreen = () => {
+    if (document.fullscreenElement) {
+      exitFullscreen();
+    } else {
+      enterFullScreen();
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -94,9 +135,15 @@ const Topbar = () => {
         <IconButton>
           <NotificationsOutlinedIcon />
         </IconButton>
+
         <IconButton>
           <PersonOutlinedIcon />
         </IconButton>
+
+        <IconButton onClick={handleClickFullScreen}>
+          <FullScreenIcon />
+        </IconButton>
+
         <Box>
           <IconButton
             aria-controls={open ? "menu" : undefined}

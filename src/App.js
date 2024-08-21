@@ -13,10 +13,10 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [theme, colorMode] = useMode();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   useEffect(() => {
-    getAccount()
+    //getAccount()
   }, []);
 
   const getAccount = () => {
