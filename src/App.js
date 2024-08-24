@@ -16,15 +16,11 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    getAccount()
-  }, []);
-
-  const getAccount = () => {
-    let myAccount = localStorage.getItem('account');
-    if (myAccount) {
+    let myAccount = localStorage.getItem("account");
+    if (myAccount !== null) {
       setIsAuthenticated(true);
     }
-  };
+  }, []);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
