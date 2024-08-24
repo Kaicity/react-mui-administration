@@ -13,18 +13,14 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [theme, colorMode] = useMode();
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    //getAccount()
-  }, []);
-
-  const getAccount = () => {
-    let myAccount = localStorage.getItem('account');
-    if (myAccount) {
+    let myAccount = localStorage.getItem("account");
+    if (myAccount !== null) {
       setIsAuthenticated(true);
     }
-  };
+  }, []);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
