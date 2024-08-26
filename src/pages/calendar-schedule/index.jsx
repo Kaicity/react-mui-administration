@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Calendar, formatDate } from "@fullcalendar/core";
+import { formatDate } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import FullCalendar from "@fullcalendar/react";
-import useMediaQuery from "@mui/material/useMediaQuery";
 
 import {
   Box,
@@ -31,8 +30,6 @@ const CalendarSchedule = () => {
   const [openDialog, setOpenDialog] = useState(false);
   const [newEventTitle, setNewEventTitle] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
-
-  const isNonMobile = useMediaQuery("(min-width:600px)")
 
   const handleDateClick = (selected) => {
     setSelectedDate(selected);
