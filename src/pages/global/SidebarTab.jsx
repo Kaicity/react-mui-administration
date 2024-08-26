@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import {
-  Box,
-  IconButton,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { tokens } from "../../theme";
 
@@ -88,7 +83,9 @@ const SidebarTab = () => {
   // Set mặc định Item đầu tiên là Dashboard
   const [selected, setSelected] = useState("Dashboard");
 
-  const handleCollapse = () => setIsCollapsed(!isCollapsed);
+  const handleCollapse = () => {
+    setIsCollapsed(!isCollapsed);
+  };
 
   return (
     <div style={{ display: "flex", height: "100%", minHeight: "400px" }}>
@@ -97,7 +94,11 @@ const SidebarTab = () => {
         backgroundColor={colors.primary[400]}
         transitionDuration={1000}
         style={{ border: "none" }}
-        width="300px"
+        width={
+          window.innerWidth <= theme.breakpoints.values.md
+            ? window.innerWidth + "px"
+            : "300px"
+        }
       >
         <Menu>
           <MenuItem
