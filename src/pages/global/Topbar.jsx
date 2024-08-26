@@ -5,6 +5,7 @@ import {
   MenuItem,
   Typography,
   useTheme,
+  Badge,
 } from "@mui/material";
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +21,18 @@ import SignalCellularAltOutlinedIcon from "@mui/icons-material/SignalCellularAlt
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FullScreenIcon from "@mui/icons-material/Fullscreen";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import styled, { keyframes } from "styled-components";
+
+const spin = keyframes`
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+
+const SpinningSettingOutlinedIcon = styled(SettingsOutlinedIcon)`
+  animation: ${spin} 3s linear infinite;
+`;
 
 const Topbar = () => {
   const theme = useTheme();
@@ -124,25 +137,35 @@ const Topbar = () => {
           </Typography>
         </IconButton>
 
-        <IconButton onClick={colorMode.toggleColorMode}>
-          {theme.palette.mode === "dark" ? (
-            <DarkModeOutlinedIcon />
-          ) : (
-            <LightModeOutlinedIcon />
-          )}
-        </IconButton>
+        <Tippy content="Change Theme">
+          <IconButton onClick={colorMode.toggleColorMode}>
+            {theme.palette.mode === "dark" ? (
+              <DarkModeOutlinedIcon />
+            ) : (
+              <LightModeOutlinedIcon />
+            )}
+          </IconButton>
+        </Tippy>
 
-        <IconButton>
-          <NotificationsOutlinedIcon />
-        </IconButton>
+        <Tippy content="Notifications">
+          <IconButton>
+            <Badge badgeContent={5} color="error">
+              <NotificationsOutlinedIcon />
+            </Badge>
+          </IconButton>
+        </Tippy>
 
-        <IconButton>
-          <PersonOutlinedIcon />
-        </IconButton>
+        <Tippy content="User">
+          <IconButton>
+            <PersonOutlinedIcon />
+          </IconButton>
+        </Tippy>
 
-        <IconButton onClick={handleClickFullScreen}>
-          <FullScreenIcon />
-        </IconButton>
+        <Tippy content="Screen Mode">
+          <IconButton onClick={handleClickFullScreen}>
+            <FullScreenIcon />
+          </IconButton>
+        </Tippy>
 
         <Box>
           <IconButton
@@ -150,7 +173,7 @@ const Topbar = () => {
             aria-haspopup="true"
             onClick={handleClick}
           >
-            <SettingsOutlinedIcon />
+            <SpinningSettingOutlinedIcon />
           </IconButton>
           <Menu
             id="menu"
