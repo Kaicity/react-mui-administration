@@ -34,7 +34,7 @@ const Login = () => {
     if (theme.palette.mode === "light") {
       return colorMode.toggleColorMode;
     }
-  }, [theme.palette.mode]);
+  }, []);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
