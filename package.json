@@ -21,6 +21,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@tippyjs/react": "^4.2.6",
     "formik": "^2.4.6",
     "fullcalendar": "^6.1.15",
     "react": "^18.3.1",
@@ -28,6 +29,7 @@
     "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^6.26.0",
     "react-scripts": "5.0.1",
+    "styled-components": "^6.1.12",
     "web-vitals": "^2.1.4",
     "yup": "^1.4.0"
   },

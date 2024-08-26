@@ -27,14 +27,14 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ username: "", password: "" });
-  const [blockSubmit, setBlockSubmit] = useState(false)
+  const [blockSubmit, setBlockSubmit] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (theme.palette.mode === "light") {
       return colorMode.toggleColorMode;
     }
-  }, []);
+  },[]);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -78,10 +78,10 @@ const Login = () => {
     if (email === account.email && password === account.password) {
       let isAccount = { email, password };
       localStorage.setItem("account", JSON.stringify(isAccount));
-      
-      setBlockSubmit(true)
+
+      setBlockSubmit(true);
       setTimeout(() => {
-        setBlockSubmit(false)
+        setBlockSubmit(false);
         navigate("/");
       }, 1500);
     } else {
@@ -160,7 +160,7 @@ const Login = () => {
         <Box
           sx={{
             flex: 1,
-            mb: "80px",
+            mb: "100px",
             paddingLeft: isSmallScreen ? "0" : "100px",
             paddingRight: isSmallScreen ? "0" : "100px",
             paddingTop: "50px",
@@ -176,8 +176,8 @@ const Login = () => {
           >
             Sign In
           </Typography>
-
-          <form onSubmit={handleSubmit}>
+          <br />
+          <form onSubmit={handleSubmit} autoComplete="off">
             <FormControl
               variant="outlined"
               fullWidth
@@ -193,28 +193,37 @@ const Login = () => {
                     borderColor: "currentColor", // Border color when focused
                   },
                 },
+                "& .MuiInputLabel-root": {
+                  position: "absolute",
+                  top: "0px",
+                  left: "2px",
+                  bottom: "5px",
+                  transform: "translateY(-50%)",
+                  fontSize: "14px",
+                  color: "grey",
+                },
               }}
             >
               <InputLabel htmlFor="username" color="secondary">
-                Username
+                Email
               </InputLabel>
+
               <OutlinedInput
                 id="username"
-                placeholder="Enter username"
-                label="Username"
+                placeholder="Enter your email"
                 value={email}
                 onChange={handleInputChange}
               />
               {errors.username && (
                 <FormHelperText error>{errors.username}</FormHelperText>
               )}
-            </FormControl>
+            </FormControl>   
 
             <FormControl
               fullWidth
               variant="outlined"
               sx={{
-                mt: "10px",
+                mt: "40px",
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {
                     borderColor: "currentColor",
@@ -226,6 +235,15 @@ const Login = () => {
                     borderColor: "currentColor",
                   },
                 },
+                "& .MuiInputLabel-root": {
+                  position: "absolute",
+                  top: "0px",
+                  left: "2px",
+                  bottom: "5px",
+                  transform: "translateY(-50%)",
+                  fontSize: "14px",
+                  color: "grey",
+                },
               }}
             >
               <InputLabel
@@ -236,9 +254,11 @@ const Login = () => {
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-password"
+                placeholder="Enter your password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={handleInputChange}
+                autoComplete="off"
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -251,40 +271,11 @@ const Login = () => {
                     </IconButton>
                   </InputAdornment>
                 }
-                label="Password"
               />
               {errors.password && (
                 <FormHelperText error>{errors.password}</FormHelperText>
               )}
             </FormControl>
-
-            <Typography
-              display="flex"
-              justifyContent={isSmallScreen ? "center" : "end"}
-              color={colors.grey[100]}
-              mt={2}
-            >
-              Recover Password
-            </Typography>
-
-            <Button
-              type="submit"
-              variant="contained"
-              fullWidth
-              disabled= {blockSubmit}
-              sx={{
-                mt: "40px",
-                height: "50px",
-                borderRadius: "10px",
-                backgroundColor: colors.blueAccent[600],
-                color: "white",
-                "&:hover": {
-                  backgroundColor: colors.blueAccent[400],
-                },
-              }}
-            >
-              Sign In
-            </Button>
           </form>
 
           <Box display="flex" alignItems="center" mb="20px" mt="20px">
