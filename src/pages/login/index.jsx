@@ -34,7 +34,7 @@ const Login = () => {
     if (theme.palette.mode === "light") {
       return colorMode.toggleColorMode;
     }
-  },[]);
+  }, [theme.palette.mode]);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -160,7 +160,7 @@ const Login = () => {
         <Box
           sx={{
             flex: 1,
-            mb: "100px",
+            mb: "20px",
             paddingLeft: isSmallScreen ? "0" : "100px",
             paddingRight: isSmallScreen ? "0" : "100px",
             paddingTop: "50px",
@@ -217,7 +217,7 @@ const Login = () => {
               {errors.username && (
                 <FormHelperText error>{errors.username}</FormHelperText>
               )}
-            </FormControl>   
+            </FormControl>
 
             <FormControl
               fullWidth
@@ -276,6 +276,25 @@ const Login = () => {
                 <FormHelperText error>{errors.password}</FormHelperText>
               )}
             </FormControl>
+
+            <Button
+              type="submit"
+              variant="contained"
+              fullWidth
+              disabled={blockSubmit}
+              sx={{
+                mt: "40px",
+                height: "50px",
+                borderRadius: "10px",
+                backgroundColor: colors.blueAccent[600],
+                color: "white",
+                "&:hover": {
+                  backgroundColor: colors.blueAccent[400],
+                },
+              }}
+            >
+              Sign In
+            </Button>
           </form>
 
           <Box display="flex" alignItems="center" mb="20px" mt="20px">
