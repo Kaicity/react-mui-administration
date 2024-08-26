@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -12,7 +12,7 @@ import {
   IconButton,
   FormHelperText,
 } from "@mui/material";
-import { tokens, ColorModeContext } from "../../theme";
+import { tokens } from "../../theme";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { account } from "../../auth/account";
@@ -21,7 +21,6 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const colorMode = useContext(ColorModeContext);
 
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -29,12 +28,6 @@ const Login = () => {
   const [errors, setErrors] = useState({ username: "", password: "" });
   const [blockSubmit, setBlockSubmit] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (theme.palette.mode === "light") {
-      return colorMode.toggleColorMode;
-    }
-  }, []);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -98,7 +91,7 @@ const Login = () => {
       alignItems="center"
       height="100vh"
       sx={{
-        background: "linear-gradient(135deg, #0f0c29, #302b63, #24243e)",
+        background: colors.primary[400],
         padding: isSmallScreen ? "20px" : "0",
       }}
     >
@@ -116,20 +109,32 @@ const Login = () => {
           <Box display="flex" alignItems="start">
             <Box mr="30px">
               <Box>
-                <Typography variant="h1" fontWeight="bold">
+                <Typography
+                  variant="h1"
+                  fontWeight="bold"
+                  color={colors.primary[100]}
+                >
                   Sign In to
                 </Typography>
                 <br />
-                <Typography variant="h1" fontWeight="bold">
+                <Typography
+                  variant="h1"
+                  fontWeight="bold"
+                  color={colors.primary[100]}
+                >
                   Recharge Direct
                 </Typography>
               </Box>
               <Box mt="50px" alignItems="center">
-                <Typography variant="h3" sx={{ marginRight: 1 }}>
+                <Typography
+                  variant="h3"
+                  sx={{ marginRight: 1 }}
+                  color={colors.primary[100]}
+                >
                   If you don't have an account
                 </Typography>
 
-                <Typography variant="h3">
+                <Typography variant="h3" color={colors.primary[100]}>
                   you can{" "}
                   <a
                     href="https://example.com"
@@ -170,14 +175,14 @@ const Login = () => {
           <Typography
             variant="h2"
             align={isSmallScreen ? "center" : "left"}
-            color={colors.grey[100]}
+            color={colors.primary[100]}
             fontWeight="bold"
             gutterBottom
           >
             Sign In
           </Typography>
           <br />
-          <form onSubmit={handleSubmit} autoComplete="off">
+          <form onSubmit={handleSubmit}>
             <FormControl
               variant="outlined"
               fullWidth
@@ -213,6 +218,9 @@ const Login = () => {
                 placeholder="Enter your email"
                 value={email}
                 onChange={handleInputChange}
+                sx={{
+                  color: colors.primary[100],
+                }}
               />
               {errors.username && (
                 <FormHelperText error>{errors.username}</FormHelperText>
@@ -258,7 +266,9 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={handleInputChange}
-                autoComplete="off"
+                sx={{
+                  color: colors.primary[100],
+                }}
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
@@ -266,8 +276,11 @@ const Login = () => {
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
                       edge="end"
+                      sx={{
+                        color: colors.primary[100],
+                      }}
                     >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 }
@@ -284,6 +297,7 @@ const Login = () => {
               disabled={blockSubmit}
               sx={{
                 mt: "40px",
+                fontWeight: "bold",
                 height: "50px",
                 borderRadius: "10px",
                 backgroundColor: colors.blueAccent[600],
@@ -299,11 +313,11 @@ const Login = () => {
 
           <Box display="flex" alignItems="center" mb="20px" mt="20px">
             <Box flex="1" height="1px" bgcolor={colors.grey[400]} />{" "}
-            <Typography
+            <Typography 
               variant="body1"
               sx={{
                 mx: 2,
-                color: colors.grey[100],
+                color: colors.primary[100],
                 fontWeight: "bold",
               }}
             >
