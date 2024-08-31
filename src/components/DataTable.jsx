@@ -1,7 +1,6 @@
 import { DataGrid } from "@mui/x-data-grid";
 
 const DataTable = ({ rows, columns, checkboxSelection, slots }) => {
-
   return (
     <DataGrid
       rows={rows}

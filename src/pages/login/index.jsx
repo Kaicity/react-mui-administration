@@ -18,7 +18,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { account } from "../../auth/account";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -27,6 +27,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ username: "", password: "" });
   const [blockSubmit, setBlockSubmit] = useState(false);
+  
   const navigate = useNavigate();
 
   const handleClickShowPassword = () => {
@@ -75,6 +76,7 @@ const Login = () => {
       setBlockSubmit(true);
       setTimeout(() => {
         setBlockSubmit(false);
+        onLogin();
         navigate("/");
       }, 1500);
     } else {
@@ -313,7 +315,7 @@ const Login = () => {
 
           <Box display="flex" alignItems="center" mb="20px" mt="20px">
             <Box flex="1" height="1px" bgcolor={colors.grey[400]} />{" "}
-            <Typography 
+            <Typography
               variant="body1"
               sx={{
                 mx: 2,

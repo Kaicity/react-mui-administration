@@ -52,7 +52,7 @@ const Dashboard = () => {
       >
         {/* ROW 1 */}
         <Box
-          gridColumn={{ xs: "span 12", sm: "span 4", md: "span 3" }}
+          gridColumn={{ xs: "span 12", sm: "span 6", md: "span 6" }}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -71,7 +71,7 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn={{ xs: "span 12", sm: "span 4", md: "span 3" }}
+          gridColumn={{ xs: "span 12", sm: "span 6", md: "span 6" }}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -90,7 +90,7 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn={{ xs: "span 12", sm: "span 4", md: "span 3" }}
+          gridColumn={{ xs: "span 12", sm: "span 6", md: "span 6" }}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
@@ -109,7 +109,7 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn={{ xs: "span 12", sm: "span 4", md: "span 3" }}
+          gridColumn={{ xs: "span 12", sm: "span 6", md: "span 6" }}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"

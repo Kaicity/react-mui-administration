@@ -10,17 +10,39 @@ import SettingSystem from "./pages/setting-system";
 import Login from "./pages/login";
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import DataGridPro from "./pages/datagrid-pro";
+import DataGrid from "./pages/datagrid-basic";
 
 function App() {
   const [theme, colorMode] = useMode();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    let myAccount = localStorage.getItem("account");
-    if (myAccount !== null) {
-      setIsAuthenticated(true);
-    }
+    const checkAuthentication = () => {
+      const myAccount = localStorage.getItem("account");
+      setIsAuthenticated(myAccount !== null);
+    };
+    checkAuthentication();
   }, []);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    return isAuthenticated;
+  };
+
+  const ProtectedRoute = ({ children }) => {
+    return isAuthenticated ? (
+      <div className="app">
+        <SidebarTab />
+        <main className="content">
+          <Topbar />
+          {children}
+        </main>
+      </div>
+    ) : (
+      <Navigate to="/login" />
+    );
+  };
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -28,62 +50,55 @@ function App() {
         <CssBaseline />
         <Router>
           <Routes>
-            {/* Routes Cho các trang phía ngoài - public */}
-            <Route path="/login" element={<Login />} />
-
+            <Route path="/login" element={<Login onLogin={handleLogin} />} />
             <Route
               path="/"
               element={
-                isAuthenticated ? (
-                  <div className="app">
-                    <SidebarTab />
-                    <main className="content">
-                      <Topbar />
-                      <Dashboard />
-                    </main>
-                  </div>
-                ) : (
-                  <Navigate to="/login" />
-                )
+                <ProtectedRoute onLogin={handleLogin}>
+                  <Dashboard />
+                </ProtectedRoute>
               }
             />
-
+            <Route
+              path="/datagrid-pro"
+              element={
+                <ProtectedRoute onLogin={handleLogin}>
+                  <DataGridPro />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/datagrid"
+              element={
+                <ProtectedRoute onLogin={handleLogin}>
+                  <DataGrid />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/customer"
               element={
-                isAuthenticated ? (
-                  <div className="app">
-                    <SidebarTab />
-                    <main className="content">
-                      <Topbar />
-                      <Customer />
-                    </main>
-                  </div>
-                ) : (
-                  <Navigate to="/login" />
-                )
+                <ProtectedRoute onLogin={handleLogin}>
+                  <Customer />
+                </ProtectedRoute>
               }
             />
-
             <Route
               path="/setting"
               element={
-                isAuthenticated ? (
-                  <div className="app">
-                    <SidebarTab />
-                    <main className="content">
-                      <Topbar />
-                      <SettingSystem />
-                    </main>
-                  </div>
-                ) : (
-                  <Navigate to="/login" />
-                )
+                <ProtectedRoute onLogin={handleLogin}>
+                  <SettingSystem />
+                </ProtectedRoute>
               }
             />
-
-            <Route path="/employee-schedule" element={<CalendarSchedule />} />
-            <Route path="/setting" element={<SettingSystem />} />
+            <Route
+              path="/employee-schedule"
+              element={
+                <ProtectedRoute onLogin={handleLogin}>
+                  <CalendarSchedule />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </Router>
       </ThemeProvider>

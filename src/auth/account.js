@@ -1,4 +1,4 @@
 export const account = {
     email: "admin@bot.com",
-    password: "123456789"
+    password: "nmtnttt2505"
 }
