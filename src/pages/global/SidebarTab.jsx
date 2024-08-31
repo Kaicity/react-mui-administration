@@ -9,25 +9,23 @@ import ComputerOutlinedIcon from "@mui/icons-material/ComputerOutlined";
 import BookOnlineOutlinedIcon from "@mui/icons-material/BookOnlineOutlined";
 import CardMembershipOutlinedIcon from "@mui/icons-material/CardMembershipOutlined";
 import DiscountSharpIcon from "@mui/icons-material/DiscountSharp";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/BookmarkAddedOutlined";
-import ChatBubbleOutlineOutlined from "@mui/icons-material/ChatBubbleOutlineOutlined";
-import HomeRepairServiceOutlinedIcon from "@mui/icons-material/HomeRepairServiceOutlined";
 import Diversity3OutlinedIcon from "@mui/icons-material/Diversity3Outlined";
-import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-import PersonOffOutlinedIcon from "@mui/icons-material/PersonOffOutlined";
-import SupervisedUserCircleOutlinedIcon from "@mui/icons-material/SupervisedUserCircleOutlined";
-import DoorFrontOutlinedIcon from "@mui/icons-material/DoorFrontOutlined";
-import StorefrontOutlinedIcon from "@mui/icons-material/StorefrontOutlined";
 import SettingsSuggestOutlinedIcon from "@mui/icons-material/SettingsSuggestOutlined";
-import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import { LineAxisOutlined } from "@mui/icons-material";
 
 // Define the Item component
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Item = ({
+  title,
+  to,
+  icon,
+  selected,
+  setSelected,
+  isCollapsedMobile,
+}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isHovered, setIsHovered] = useState(false);
@@ -49,7 +47,10 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={() => setSelected(title)}
+      onClick={() => {
+        setSelected(title);
+        isCollapsedMobile(false);
+      }}
       icon={icon}
       suffix={title === "Dashboard" ? "🔥" : ""}
       component={<Link to={to} />}
@@ -85,6 +86,10 @@ const SidebarTab = () => {
 
   const handleCollapse = () => {
     setIsCollapsed(!isCollapsed);
+  };
+
+  const handleCollapseIsDefault = () => {
+    setIsCollapsed(isCollapsed);
   };
 
   return (
@@ -184,6 +189,11 @@ const SidebarTab = () => {
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             {!isCollapsed && (
@@ -192,24 +202,34 @@ const SidebarTab = () => {
                 color={colors.grey[300]}
                 sx={{ m: "15px 0 5px 20px" }}
               >
-                Operation Management
+                Table Component
               </Typography>
             )}
 
             <Item
-              title="Ticket POS"
-              to="/ticket-pos"
+              title="DataGrid Pro"
+              to="/datagrid-pro"
               icon={<ComputerOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             <Item
-              title="Booking Online"
-              to="/booking-onl"
+              title="DataGrid Basic"
+              to="/datagrid"
               icon={<BookOnlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             {!isCollapsed && (
@@ -218,40 +238,60 @@ const SidebarTab = () => {
                 color={colors.grey[300]}
                 sx={{ m: "15px 0 5px 20px" }}
               >
-                Gift Card Management
+                Input Component
               </Typography>
             )}
 
             <Item
-              title="Gift Card"
+              title="Input"
               to="/gift-card"
               icon={<CardMembershipOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             <Item
-              title="E-Gift Card Discount"
+              title="Input form validate"
               to="/gift-card-discount"
               icon={<DiscountSharpIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             <Item
-              title="E-Gift Card Setting"
+              title="Select"
               to="/gift-card-setting"
               icon={<CardMembershipOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             <Item
-              title="E-Gift Card Management"
+              title="Input button"
               to="/gift-card-manage"
               icon={<CardMembershipOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             {!isCollapsed && (
@@ -260,7 +300,7 @@ const SidebarTab = () => {
                 color={colors.grey[300]}
                 sx={{ m: "15px 0 5px 20px" }}
               >
-                Management
+                Button Component
               </Typography>
             )}
 
@@ -270,6 +310,11 @@ const SidebarTab = () => {
               icon={<ArticleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             <Item
@@ -278,6 +323,11 @@ const SidebarTab = () => {
               icon={<ArticleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             <Item
@@ -286,6 +336,11 @@ const SidebarTab = () => {
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             <Item
@@ -294,6 +349,11 @@ const SidebarTab = () => {
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             <Item
@@ -302,6 +362,11 @@ const SidebarTab = () => {
               icon={<MapOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             <Item
@@ -310,102 +375,11 @@ const SidebarTab = () => {
               icon={<LineAxisOutlined />}
               selected={selected}
               setSelected={setSelected}
-            />
-
-            {!isCollapsed && (
-              <Typography
-                variant="h6"
-                color={colors.grey[300]}
-                sx={{ m: "15px 0 5px 20px" }}
-              >
-                Discount Management
-              </Typography>
-            )}
-
-            <Item
-              title="Discounts"
-              to="/discount-management"
-              icon={<DiscountSharpIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            {!isCollapsed && (
-              <Typography
-                variant="h6"
-                color={colors.grey[300]}
-                sx={{ m: "15px 0 5px 20px" }}
-              >
-                Promotion & Loyalty Management
-              </Typography>
-            )}
-
-            <Item
-              title="Promotion"
-              to="/promotion"
-              icon={<DiscountSharpIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Loyalty Program"
-              to="/loyalaty-prog"
-              icon={<DiscountSharpIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            {!isCollapsed && (
-              <Typography
-                variant="h6"
-                color={colors.grey[300]}
-                sx={{ m: "15px 0 5px 20px" }}
-              >
-                Marketing
-              </Typography>
-            )}
-
-            <Item
-              title="SMS"
-              to="/marketing"
-              icon={<ChatBubbleOutlineOutlined />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="SMS Checking"
-              to="/geography"
-              icon={<ChatBubbleOutlineOutlined />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            {!isCollapsed && (
-              <Typography
-                variant="h6"
-                color={colors.grey[300]}
-                sx={{ m: "15px 0 5px 20px" }}
-              >
-                Service Management
-              </Typography>
-            )}
-
-            <Item
-              title="Service Group"
-              to="/service-group"
-              icon={<HomeRepairServiceOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Services"
-              to="/service"
-              icon={<HomeRepairServiceOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             {!isCollapsed && (
@@ -424,6 +398,11 @@ const SidebarTab = () => {
               icon={<Diversity3OutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
 
             <Item
@@ -432,109 +411,12 @@ const SidebarTab = () => {
               icon={<Diversity3OutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
-
-            {!isCollapsed && (
-              <Typography
-                variant="h6"
-                color={colors.grey[300]}
-                sx={{ m: "15px 0 5px 20px" }}
-              >
-                Employee Management
-              </Typography>
-            )}
-
-            <Item
-              title="Roles"
-              to="/employee-management"
-              icon={<SupervisedUserCircleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Employee Group"
-              to="/employee-group"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Employees"
-              to="/employee"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Employee Schedule"
-              to="/employee-schedule"
-              icon={<CalendarTodayOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Checking History"
-              to="/checking-history"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Turn Adjustment"
-              to="/turn-adj"
-              icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Day off"
-              to="/day-off"
-              icon={<PersonOffOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            {!isCollapsed && (
-              <Typography
-                variant="h6"
-                color={colors.grey[300]}
-                sx={{ m: "15px 0 5px 20px" }}
-              >
-                Store Management
-              </Typography>
-            )}
-
-            <Item
-              title="Close Date"
-              to="/close-date"
-              icon={<DoorFrontOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Stores"
-              to="/store"
-              icon={<StorefrontOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            {!isCollapsed && (
-              <Typography
-                variant="h6"
-                color={colors.grey[300]}
-                sx={{ m: "15px 0 5px 20px" }}
-              >
-                Store Management
-              </Typography>
-            )}
 
             <Item
               title="Settings"
@@ -542,46 +424,11 @@ const SidebarTab = () => {
               icon={<SettingsSuggestOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
-
-            <Item
-              title="Business Time"
-              to="/business-time"
-              icon={<MapOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="SquareUp Setting"
-              to="/squareup-setting"
-              icon={<SettingsSuggestOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="SMS Setting"
-              to="/sms-setting"
-              icon={<SettingsSuggestOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Email Editor"
-              to="/email-editor"
-              icon={<EmailOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
-            <Item
-              title="Email Setting"
-              to="/email-setting"
-              icon={<SettingsSuggestOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
+              isCollapsedMobile={
+                window.innerWidth <= theme.breakpoints.values.md && !isCollapsed
+                  ? handleCollapse
+                  : handleCollapseIsDefault
+              }
             />
           </Box>
         </Menu>

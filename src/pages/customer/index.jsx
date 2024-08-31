@@ -11,7 +11,6 @@ import ModalDialog from "../../components/ModalDialog";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
-
 const Customer = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
